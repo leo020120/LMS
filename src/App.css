@@ -1,42 +1,109 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+li, a, button, p {
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  display: flex; 
+  min-height: 100vh;
+  min-width: 100vw;
+  flex-direction: column;
+}
+
+
+header {
+  background-color: chocolate;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding: 30px, 10%; */
+  height:50x;
+  width:auto;
+  
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex:1;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  margin-right: auto;
+  cursor: pointer;
+  order:0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.navBar {
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  order: 1;
+
+}
+
+.navBar li {
+  list-style: none;
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.navBar li a {
+  transition: all 0.3s ease 0s;
+ 
+}
+
+.navBar li a {
+  color: blue;
+}
+
+
+/* medium screen - center */
+/* @media all and (max-width: 500px) {
+  .header {
+    justify-content: space-around;
   }
-  to {
-    transform: rotate(360deg);
+} */
+
+/* small screen - go to columns */
+/* @media all and (max-width: 500px) {
+  .header {
+    flex-direction: column;
   }
+} */
+
+
+.navOption {
+  padding-inline-end: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.login {
+  order:2;
 }
 
-.card {
-  padding: 2em;
+.leftPanel {
+  background-color: aqua;
+  flex:0.5;
+  order:1;
 }
 
-.read-the-docs {
-  color: #888;
+.leftPanel li {
+  list-style: none;
+}
+
+.table {
+  background-color: green;
+  flex: 2;
+  order:2;
+}
+
+
+.rightPanel {
+  background-color: blueviolet;
+  flex:0.5;
+  order:3;
+}
+
+.footer {
+  background-color: blue;
 }
