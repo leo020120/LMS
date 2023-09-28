@@ -2,11 +2,26 @@
 
 import React, { useState, useEffect } from 'react';
 import DataTable from './datatable';
-import './App.css'
+import './styles/App.css'
+import Modal from 'react-modal'
+import MyModal from './Modal/Modal';
+
+
+
 
 function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const openModal = () => {
+    setModalIsOpen(true)
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false)
+  };
+
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +42,12 @@ function App() {
   return (
     <>
     <body>
+      <dialog data-modal>
+        <div>Choose team</div>
+        <button data-close-modal>Close</button>
+      </dialog>
+
+
       <div className='container'>
       <header>
         
@@ -41,6 +62,11 @@ function App() {
         
       </header>
       
+      <div>
+        <button onClick={openModal}>Open Modal</button>
+        <MyModal isOpen={modalIsOpen} closeModal={closeModal} />
+      </div>
+
       <div className='main'>
         <nav className='leftPanel'>
           <ul>
@@ -50,15 +76,18 @@ function App() {
           <li>League 2</li>
           </ul>
         </nav>
-        
-        <div className='table'>table
-        
+
+       
+        {/*put in the gw slider using match.matchday from the api*/}
+        <div className='table'>
+        <DataTable data={games} />
         
         </div>
         
         <div className='rightPanel'>right panel</div>
       </div>
-
+   
+      
 
       <div className='footer'>footer</div>
       </div>
