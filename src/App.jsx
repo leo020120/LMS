@@ -2,21 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 import DataTable from './datatable';
-<<<<<<< HEAD
-=======
 import './styles/App.css'
 import Modal from 'react-modal'
 import MyModal from './Modal/Modal';
 
 
 
->>>>>>> master
 
 function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
-<<<<<<< HEAD
-=======
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const openModal = () => {
@@ -27,7 +22,6 @@ function App() {
     setModalIsOpen(false)
   };
 
->>>>>>> master
 
   useEffect(() => {
     setLoading(true);
@@ -46,11 +40,7 @@ function App() {
   }, []);
 
   return (
-    <>
-<<<<<<< HEAD
-      <h1>LMS</h1>
-      <DataTable data={games} /> 
-=======
+    <>     
     <body>
       <dialog data-modal>
         <div>Choose team</div>
@@ -102,7 +92,6 @@ function App() {
       <div className='footer'>footer</div>
       </div>
       </body>
->>>>>>> master
     </>
   );
 }
