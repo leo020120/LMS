@@ -2,10 +2,32 @@
 
 import React, { useState, useEffect } from 'react';
 import DataTable from './datatable';
+<<<<<<< HEAD
+=======
+import './styles/App.css'
+import Modal from 'react-modal'
+import MyModal from './Modal/Modal';
+
+
+
+>>>>>>> master
 
 function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
+=======
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const openModal = () => {
+    setModalIsOpen(true)
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false)
+  };
+
+>>>>>>> master
 
   useEffect(() => {
     setLoading(true);
@@ -25,8 +47,62 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <h1>LMS</h1>
       <DataTable data={games} /> 
+=======
+    <body>
+      <dialog data-modal>
+        <div>Choose team</div>
+        <button data-close-modal>Close</button>
+      </dialog>
+
+
+      <div className='container'>
+      <header>
+        
+        <nav className='navBar'>
+        <img className='logo' height='40px' width='40px' src='https://speckyboy.com/wp-content/uploads/2021/09/simple-logo-design-03.jpg' alt='logo'></img>
+          <ul>
+            <li className='item'><a href='#'>About</a></li>
+            <li className='item'><a href='#'>Help</a></li>
+          </ul>
+          <a className='login' href='#'><button>Login</button></a>
+        </nav>
+        
+      </header>
+      
+      <div>
+        <button onClick={openModal}>Open Modal</button>
+        <MyModal isOpen={modalIsOpen} closeModal={closeModal} />
+      </div>
+
+      <div className='main'>
+        <nav className='leftPanel'>
+          <ul>
+          <li>Premier League</li>
+          <li>Championship</li>
+          <li>League 1</li>
+          <li>League 2</li>
+          </ul>
+        </nav>
+
+       
+        {/*put in the gw slider using match.matchday from the api*/}
+        <div className='table'>
+        <DataTable data={games} />
+        
+        </div>
+        
+        <div className='rightPanel'>right panel</div>
+      </div>
+   
+      
+
+      <div className='footer'>footer</div>
+      </div>
+      </body>
+>>>>>>> master
     </>
   );
 }

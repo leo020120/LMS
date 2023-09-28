@@ -1,0 +1,17 @@
+table {
+    width:100%;
+}
+
+th {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid white;
+    background-color: black;
+}
+
+
+
+.badge img {
+    max-width: 50px;
+    max-height: 50px;
+}
