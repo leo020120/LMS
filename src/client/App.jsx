@@ -1,10 +1,10 @@
 // App.jsx
 
 import React, { useState, useEffect } from 'react';
-import DataTable from './datatable';
-import './styles/App.css'
+import DataTable from './components/datatable';
+import './components/styles/App.css'
 import Modal from 'react-modal'
-import MyModal from './Modal/Modal';
+import MyModal from './components/Modal';
 
 
 
@@ -42,13 +42,7 @@ function App() {
   return (
     <>     
     <body>
-      <dialog data-modal>
-        <div>Choose team</div>
-        <button data-close-modal>Close</button>
-      </dialog>
-
-
-      <div className='container'>
+         <div className='container'>
       <header>
         
         <nav className='navBar'>
@@ -62,10 +56,10 @@ function App() {
         
       </header>
       
-      <div>
+      {/* <div>
         <button onClick={openModal}>Open Modal</button>
         <MyModal isOpen={modalIsOpen} closeModal={closeModal} />
-      </div>
+      </div> */}
 
       <div className='main'>
         <nav className='leftPanel'>
@@ -81,7 +75,6 @@ function App() {
         {/*put in the gw slider using match.matchday from the api*/}
         <div className='table'>
         <DataTable data={games} />
-        
         </div>
         
         <div className='rightPanel'>right panel</div>
