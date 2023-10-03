@@ -6,13 +6,13 @@ import TeamSelectModal from './TeamSelectModal'
 import MyModal from './Modal';
 
 
-const DataTable = ({ data }) => {
+const DataTable = ({ data,setOpenModal,setSelectedMatch }) => {
   if (!data || !data.matches || data.matches.length === 0) {
     return <p>No data available.</p>}
  else {
    
-  const [openModal, setOpenModal] = useState(false)
-  const [selectedMatch, setSelectedMatch] = useState(null)
+  // const [openModal, setOpenModal] = useState(false)
+  // const [selectedMatch, setSelectedMatch] = useState(null)
   
   const handleCellClick = (match) => {
     setOpenModal(true);
@@ -24,7 +24,7 @@ const DataTable = ({ data }) => {
 
   return (
     <div>
-       {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setOpenModal}/>} 
+       {/* {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setOpenModal}/>}  */}
     <table>
       <thead>
         <tr >

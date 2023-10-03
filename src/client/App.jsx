@@ -5,6 +5,7 @@ import DataTable from './components/datatable';
 import './components/styles/App.css'
 import Modal from 'react-modal'
 import MyModal from './components/Modal';
+import TeamSelectModal from './components/TeamSelectModal';
 
 
 
@@ -14,9 +15,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const openModal = () => {
-    setModalIsOpen(true)
-  };
+
+
+  const [openModal, setOpenModal] = useState(false)
+  const [closeModal, setCloseModal] = useState(false)
+  const [selectedMatch, setSelectedMatch] = useState(null)
 
 
 
@@ -40,6 +43,7 @@ function App() {
     <>     
     <body>
          <div className='container'>
+         {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setCloseModal}/>} 
       <header>
         
         <nav className='navBar'>
@@ -71,7 +75,7 @@ function App() {
        
         {/*put in the gw slider using match.matchday from the api*/}
         <div className='table'>
-        <DataTable data={games} />
+        <DataTable data={games} setOpenModal={setOpenModal} setSelectedMatch={setSelectedMatch} />
         </div>
         
         <div className='rightPanel'>right panel</div>
