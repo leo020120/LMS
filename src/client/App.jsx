@@ -18,9 +18,6 @@ function App() {
     setModalIsOpen(true)
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false)
-  };
 
 
   useEffect(() => {
