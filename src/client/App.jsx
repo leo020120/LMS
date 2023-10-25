@@ -6,6 +6,7 @@ import './components/styles/App.css'
 import Modal from 'react-modal'
 import MyModal from './components/Modal';
 import TeamSelectModal from './components/TeamSelectModal';
+import {Link} from 'react-router-dom';
 
 
 
@@ -40,19 +41,18 @@ function App() {
   }, []);
 
   return (
-    <>     
-    <body>
          <div className='container'>
          {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setCloseModal}/>} 
+         
       <header>
         
         <nav className='navBar'>
-        <img className='logo' height='40px' width='40px' src='https://speckyboy.com/wp-content/uploads/2021/09/simple-logo-design-03.jpg' alt='logo'></img>
+        <img className='logo' height='40px' width='40px' src='src\client\assets\LMS.jpg' alt='logo'></img>
           <ul>
-            <li className='item'><a href='#'>About</a></li>
+            <li className='item'><Link to='/about'>About</Link></li>
             <li className='item'><a href='#'>Help</a></li>
           </ul>
-          <a className='login' href='#'><button>Login</button></a>
+          <Link to='/login'><button>Login</button></Link>
         </nav>
         
       </header>
@@ -80,13 +80,10 @@ function App() {
         
         <div className='rightPanel'>right panel</div>
       </div>
-   
-      
-
       <div className='footer'>footer</div>
-      </div>
-      </body>
-    </>
+    </div>
+     
+  
   );
 }
 
