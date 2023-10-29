@@ -12,6 +12,9 @@ if (!match) {
       <div className="modalContainer">
         <h2>Match Details</h2>
         <div className="match-info">
+          <div className='matchday'>
+            <p>Matchday{match.matchday}</p>
+          </div>
           <div className="team">
             <img className='badge' src={match.homeTeam.crest} alt="Home Team Crest" />
             <p>{match.homeTeam.name}</p>

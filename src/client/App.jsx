@@ -43,7 +43,7 @@ function App() {
     <>     
     <body>
          <div className='container'>
-         {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setCloseModal}/>} 
+         {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setOpenModal}/>} 
       <header>
         
         <nav className='navBar'>

@@ -12,7 +12,7 @@ app.use(cors({
 
 // Replace 'your-auth-token' with your actual football-data.org API token
 const apiToken = '3d6a994701ec4843ac876876a431aab6';
-const apiUrl = 'https://api.football-data.org/v4/competitions/PL/matches?dateFrom=2023-08-04&dateTo=2023-08-16';
+const apiUrl = 'https://api.football-data.org/v4/competitions/PL/matches?dateFrom=2023-08-04&dateTo=2023-10-04';
 
 app.get('/api/standings', async (req, res) => {
   try {
