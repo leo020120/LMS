@@ -1,64 +1,59 @@
-// DataTable.js
+import { useState, useEffect } from "react";
+import supabase from "../../supabase";
+import { createClient } from "@supabase/supabase-js";
+import "./styles/datatable.css";
 
-import React, { useState } from 'react';
-import './styles/datatable.css'
-import TeamSelectModal from './TeamSelectModal'
-import MyModal from './Modal';
+function DataTable() {
+  const [matches, setMatches] = useState([]);
 
+  useEffect(() => {
+    async function getMatches() {
+      const { data, error } = await supabase.from("MATCHES").select();
+      setMatches(data);
+      console.log("data", data);
+    }
+    getMatches();
+  }, []);
+  console.log("matches", matches);
 
-const DataTable = ({ data,setOpenModal,setSelectedMatch }) => {
-  if (!data || !data.matches || data.matches.length === 0) {
-    return <p>No data available.</p>}
- else {
-   
-  // const [openModal, setOpenModal] = useState(false)
-  // const [selectedMatch, setSelectedMatch] = useState(null)
-  
-  const handleCellClick = (match) => {
-    setOpenModal(true);
-    setSelectedMatch(match);
-  };
- 
-  
-  
-
+  //console.log(matches);
   return (
     <div>
-       {/* {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setOpenModal}/>}  */}
-    <table>
-      <thead>
-        <tr >
-          <th>Game Week</th>
-          <th>Home Team</th>
-          <th>Home Score</th>
-          <th>Away Score</th>
-          <th>Away Team</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.matches.map(match => (
-          <tr key={match.id}>
-            <td>{match.matchday}</td>
-            <td className='badge' onClick={() => handleCellClick(match)}><img src={match.homeTeam.crest}/></td>
-            <td className='teamName' onClick={() => handleCellClick(match)}>{match.homeTeam.name}</td>
-            <td>{match.score.fullTime.home}</td>
-            <td>{match.score.fullTime.away}</td>
-            <td className='teamName' onClick={() => handleCellClick(match)}>{match.awayTeam.name}</td>
-            <td className='badge' onClick={() => handleCellClick(match)}><img src={match.awayTeam.crest}/></td>
+      {/* {openModal && <TeamSelectModal match={selectedMatch} closeTeamSelectModal={setOpenModal}/>}  */}
+      <table>
+        <thead>
+          <tr>
+            <th>Game Week</th>
+            <th>Home Team</th>
+            <th>Home Score</th>
+            <th>Away Score</th>
+            <th>Away Team</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    <div>
-      Modal space
-      <button onClick={() => setOpenModal(true)}>Open</button>
-    
-   
-    </div>
+        </thead>
+        <tbody>
+          {matches.map((match) => (
+            <tr key={match.matchId}>
+              <td>{match.matchday}</td>
+              <td className="badge" onClick={() => handleCellClick(match)}>
+                <img src={match.homeTeamCrest} />
+              </td>
+              <td className="teamName" onClick={() => handleCellClick(match)}>
+                {match.homeTeamName}
+              </td>
+              <td>{match.homeTeamScore}</td>
+              <td>{match.awayTeamScore}</td>
+              <td className="teamName" onClick={() => handleCellClick(match)}>
+                {match.awayTeamName}
+              </td>
+              <td className="badge" onClick={() => handleCellClick(match)}>
+                <img src={match.awayTeamCrest} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
- };
-};
-
+}
 
 export default DataTable;

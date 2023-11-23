@@ -2,14 +2,8 @@
 
 // Import necessary libraries
 import fetch from "node-fetch";
-import { createClient } from "@supabase/supabase-js";
 import cron from "node-cron";
-
-// Create a Supabase client
-const supabaseUrl = "https://kechdxscwcocftvafbej.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlY2hkeHNjd2NvY2Z0dmFmYmVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5NjQzNzc2MCwiZXhwIjoyMDEyMDEzNzYwfQ.xcUQbwJvcun1wnFkyxjwrbwDs4FjA-_g3VfXV2mxL0c";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import supabase from "../../supabase";
 
 // Function to fetch data from the football API and process it
 async function fetchDataAndProcess() {
