@@ -37,7 +37,6 @@ function App() {
           setUser(user);
         };
         fetchUser();
-        console.log("User", user);
 
         //Fetch session data
         const { sess, sesserror } = await supabase.auth.getSession();
@@ -55,9 +54,9 @@ function App() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []); // Empty dependency array means this effect runs once on mount
+  console.log("User", user);
 
   const handleSignout = async () => {
     try {
@@ -78,7 +77,8 @@ function App() {
       {openModal && (
         <TeamSelectModal
           match={selectedMatch}
-          closeTeamSelectModal={setCloseModal}
+          closeTeamSelectModal={setOpenModal}
+          user={user}
         />
       )}
 

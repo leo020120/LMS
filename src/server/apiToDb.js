@@ -44,7 +44,7 @@ async function fetchDataAndProcess() {
     });
 
     console.log("Extracted data", extractedData);
-    //   Insert the extracted data into your Supabase table
+    //   Insert the extracted data into Supabase table
     const { data: records, error } = await supabase
       .from("MATCHES")
       .upsert(extractedData, { onConflict: ["matchId"] }); // Use the correct unique column
