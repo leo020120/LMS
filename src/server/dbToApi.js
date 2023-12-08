@@ -7,7 +7,7 @@ const app = express();
 
 //express get matches data
 app.get("/matches", async (request, response) => {
-  const { data, error } = await supabase.from("MATCHES").select();
+  const { data, error } = await supabase.from("matches").select();
   response.send(data);
   console.log("data", data);
 });

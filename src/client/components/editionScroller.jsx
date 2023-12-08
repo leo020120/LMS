@@ -12,12 +12,12 @@ function EditionScroller() {
   //useEffect to grab latest list of editions from DB on mount
   useEffect(() => {
     async function getEditions() {
-      const { data, error } = await supabase.from("EDITION").select();
+      const { data, error } = await supabase.from("edition").select();
       setEditions(data);
     }
     getEditions();
   }, []);
-  console.log("EDITIONS", editions);
+  console.log("editions", editions);
 
   useEffect(() => {
     const handleScroll = () => {

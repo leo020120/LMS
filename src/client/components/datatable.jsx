@@ -8,7 +8,7 @@ function DataTable({ setOpenModal, setSelectedMatch }) {
 
   useEffect(() => {
     async function getMatches() {
-      const { data, error } = await supabase.from("MATCHES").select();
+      const { data, error } = await supabase.from("matches").select();
       setMatches(data);
       // console.log("data", data);
     }

@@ -14,7 +14,7 @@ const TeamSelectModal = ({ match, closeTeamSelectModal, user }) => {
     //do an upsert into mapping table of email, team, gameweek, matchid
     //take user details from session?
     //take match details from match object
-    //   Insert the extracted data into your Supabase table
+    //insert the extracted data into Supabase table
     //Create data object
 
     const chosenTeam = {
@@ -23,10 +23,12 @@ const TeamSelectModal = ({ match, closeTeamSelectModal, user }) => {
       gameWeek: match.matchDay,
       matchId: match.matchId,
       user_id: user.id,
+      teamId: isHomeTeam ? match.homeTeamId : match.awayTeamId,
+      team_location: isHomeTeam ? "HOME_TEAM" : "AWAY_TEAM",
     };
 
     const { data, error } = await supabase
-      .from("MAPPING")
+      .from("mapping")
       .insert(chosenTeam, { onConflict: ["mappingId"] }); // Use the correct unique column
 
     console.log("Modal USER", user);
