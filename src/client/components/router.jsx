@@ -10,6 +10,7 @@ import Success from "../screens/success";
 import App from "../App";
 import About from "../screens/about";
 import DataTable from "./datatable";
+import EditionScroller from "./editionScroller";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="success" element={<Success />} />
       <Route path="about" element={<About />} />
       <Route path="datatable" element={<DataTable />} />
+      <Route path="editionScroller" element={<EditionScroller />} />
     </>
   )
 );

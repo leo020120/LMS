@@ -1,0 +1,82 @@
+/* editionScroller.css */
+.editionScrollContainer {
+  font-family: roboto;
+  background: #000;
+  max-width: 700px;
+  margin: 16px auto;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.editionScrollContainer svg {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.editionScrollContainer ul {
+  display: flex;
+  gap: 16px;
+  padding: 12px 24px;
+  margin: 0;
+  list-style-type: none;
+  overflow-x: scroll;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.editionScrollContainer ul::-webkit-scrollbar {
+  display: none;
+}
+
+.editionScrollContainer li {
+  color: #fff;
+  text-decoration: none;
+  background: 333;
+  padding: 4px 24px;
+  display: inline-block;
+  border-radius: 4px;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.editionScrollContainer li.active {
+  background: white;
+  color: #000;
+}
+
+.editionScrollContainer .rightArrow,
+.editionScrollContainer .leftArrow {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  /* display: none; */
+}
+
+/* .editionScrollContainer .rightArrow.active,
+.editionScrollContainer .leftArrow.active {
+  display: flex;
+} */
+.editionScrollContainer .rightArrow {
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(to left, #000 50%, transparent);
+}
+
+.editionScrollContainer .leftArrow {
+  background: linear-gradient(to right, #000 50%, transparent);
+}
+
+.editionScrollContainer svg:hover {
+  background: #333;
+}

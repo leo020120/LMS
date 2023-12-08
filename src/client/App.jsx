@@ -9,6 +9,7 @@ import TeamSelectModal from "./components/TeamSelectModal";
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import supabase from "../supabase";
+import EditionScroller from "./components/editionScroller";
 
 function App() {
   const [games, setGames] = useState([]);
@@ -113,7 +114,9 @@ function App() {
           )}
         </nav>
       </header>
-
+      <div>
+        <EditionScroller />
+      </div>
       <div className="main">
         <nav className="leftPanel">
           <ul>
@@ -125,6 +128,7 @@ function App() {
         </nav>
 
         {/*put in the gw slider using match.matchday from the api*/}
+
         <div className="table">
           <DataTable
             data={games}

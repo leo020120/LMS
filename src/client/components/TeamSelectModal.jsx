@@ -22,11 +22,12 @@ const TeamSelectModal = ({ match, closeTeamSelectModal, user }) => {
       team: isHomeTeam ? match.homeTeamName : match.awayTeamName,
       gameWeek: match.matchDay,
       matchId: match.matchId,
+      user_id: user.id,
     };
 
-    const { data: records, error } = await supabase
+    const { data, error } = await supabase
       .from("MAPPING")
-      .upsert(chosenTeam, { onConflict: ["matchId"] }); // Use the correct unique column
+      .insert(chosenTeam, { onConflict: ["mappingId"] }); // Use the correct unique column
 
     console.log("Modal USER", user);
     console.log(chosenTeam);
