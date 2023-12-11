@@ -1,7 +1,8 @@
 // App.jsx
 
 import React, { useState, useEffect } from "react";
-import DataTable from "./components/datatable";
+// import DataTable from "./components/datatable";
+import DataTable from "./components/displaytable";
 import "./components/styles/App.css";
 import Modal from "react-modal";
 import MyModal from "./components/Modal";
@@ -134,6 +135,7 @@ function App() {
             data={games}
             setOpenModal={setOpenModal}
             setSelectedMatch={setSelectedMatch}
+            user={user}
           />
         </div>
 

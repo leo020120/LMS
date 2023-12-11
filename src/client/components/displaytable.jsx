@@ -1,21 +1,23 @@
-///////just shows matches from 'matches' table. creating new display table for user specific results/////////////////
-
 import { useState, useEffect } from "react";
 import supabase from "../../supabase";
 import { createClient } from "@supabase/supabase-js";
 import "./styles/datatable.css";
 
-function DataTable({ setOpenModal, setSelectedMatch }) {
+function DataTable({ setOpenModal, setSelectedMatch, user }) {
   const [matches, setMatches] = useState([]);
+  console.log("USER", user);
+  console.log("USER_ID", user?.id);
 
   useEffect(() => {
     async function getMatches() {
-      const { data, error } = await supabase.from("matches").select();
+      const { data, error } = await supabase
+        .from("display_table")
+        .select()
+        .or(`user_id.eq.${user.id}, user_id.is.null`);
       setMatches(data);
-      // console.log("data", data);
     }
     getMatches();
-  }, []);
+  }, [user]);
   // console.log("matches", matches);
 
   const handleCellClick = (match, isHomeTeam) => {
@@ -35,6 +37,7 @@ function DataTable({ setOpenModal, setSelectedMatch }) {
             <th>Home Score</th>
             <th>Away Score</th>
             <th>Away Team</th>
+            <th>Win/Lose</th>
           </tr>
         </thead>
         <tbody>
@@ -53,8 +56,8 @@ function DataTable({ setOpenModal, setSelectedMatch }) {
               >
                 {match.homeTeamName}
               </td>
-              <td>{match.homeTeamScore}</td>
-              <td>{match.awayTeamScore}</td>
+              <td className="homeScore">{match.homeTeamScore}</td>
+              <td className="awayScore">{match.awayTeamScore}</td>
               <td
                 className="teamName"
                 onClick={() => handleCellClick(match, false)}
@@ -67,6 +70,7 @@ function DataTable({ setOpenModal, setSelectedMatch }) {
               >
                 <img src={match.awayTeamCrest} />
               </td>
+              <td className="winLoss">{match.winloss}</td>
             </tr>
           ))}
         </tbody>
