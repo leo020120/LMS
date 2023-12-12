@@ -14,6 +14,7 @@ function DataTable({ setOpenModal, setSelectedMatch, user }) {
         .from("display_table")
         .select()
         .or(`user_id.eq.${user.id}, user_id.is.null`);
+      //AND edition = editionScroller active edition
       setMatches(data);
     }
     getMatches();

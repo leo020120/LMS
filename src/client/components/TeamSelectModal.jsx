@@ -1,14 +1,21 @@
 import React from "react";
 import "./styles/TeamSelectModal.css";
 import supabase from "../../supabase";
+import EditionScroller from "./editionScroller";
 
-const TeamSelectModal = ({ match, closeTeamSelectModal, user }) => {
+const TeamSelectModal = ({
+  match,
+  closeTeamSelectModal,
+  user,
+  EditionScroller,
+}) => {
   if (!match) {
     return <div>No match selected</div>;
   }
 
   const isHomeTeam = match.isHomeTeam;
   console.log("isHomeTeam", isHomeTeam);
+  console.log("Modal active edition", EditionScroller.activeEdition);
 
   const confirmTeam = async (user, match, isHomeTeam) => {
     //do an upsert into mapping table of email, team, gameweek, matchid
@@ -25,6 +32,7 @@ const TeamSelectModal = ({ match, closeTeamSelectModal, user }) => {
       user_id: user.id,
       teamId: isHomeTeam ? match.homeTeamId : match.awayTeamId,
       team_location: isHomeTeam ? "HOME_TEAM" : "AWAY_TEAM",
+      edition_id: EditonScroller.activeEdition,
     };
 
     const { data, error } = await supabase

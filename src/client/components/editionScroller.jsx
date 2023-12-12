@@ -8,6 +8,7 @@ function EditionScroller() {
   const scrollContainerRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const [activeEdition, setActiveEdition] = useState(null);
 
   //useEffect to grab latest list of editions from DB on mount
   useEffect(() => {
@@ -19,6 +20,7 @@ function EditionScroller() {
   }, []);
   console.log("editions", editions);
 
+  //UseEffect to manage the arrows appearing
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
@@ -43,6 +45,8 @@ function EditionScroller() {
     }
   };
 
+  console.log("active Edition", activeEdition);
+
   return (
     <div className="editionScrollContainer">
       {showLeftArrow && (
@@ -66,9 +70,12 @@ function EditionScroller() {
       <ul ref={scrollContainerRef}>
         {editions.map((editions, index) => (
           <li
-            key={editions.editionId}
+            key={editions.edition_id}
             className={index === activeIndex ? "active" : ""}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              setActiveIndex(index);
+              setActiveEdition(editions.edition_id);
+            }}
           >
             {editions.month}
           </li>

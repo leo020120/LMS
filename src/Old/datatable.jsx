@@ -1,7 +1,7 @@
 ///////just shows matches from 'matches' table. creating new display table for user specific results/////////////////
 
 import { useState, useEffect } from "react";
-import supabase from "../../supabase";
+import supabase from "../supabase";
 import { createClient } from "@supabase/supabase-js";
 import "./styles/datatable.css";
 
