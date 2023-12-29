@@ -3,10 +3,10 @@ import supabase from "../../supabase";
 import { createClient } from "@supabase/supabase-js";
 import "./styles/datatable.css";
 
-function DataTable({ setOpenModal, setSelectedMatch, user }) {
+function DataTable({ setOpenModal, setSelectedMatch, user, activeEdition }) {
   const [matches, setMatches] = useState([]);
-  console.log("USER", user);
-  console.log("USER_ID", user?.id);
+  // console.log("USER", user);
+  // console.log("USER_ID", user?.id);
 
   useEffect(() => {
     async function getMatches() {
@@ -14,12 +14,19 @@ function DataTable({ setOpenModal, setSelectedMatch, user }) {
         .from("display_table")
         .select()
         .or(`user_id.eq.${user.id}, user_id.is.null`);
+      // .and(`edition_id.eq.${activeEdition}`);
       //AND edition = editionScroller active edition
       setMatches(data);
     }
     getMatches();
-  }, [user]);
+  }, [user, activeEdition]);
   // console.log("matches", matches);
+  console.log(
+    "Fetching matches for user:",
+    user?.id,
+    "and edition:",
+    activeEdition
+  );
 
   const handleCellClick = (match, isHomeTeam) => {
     setOpenModal(true);

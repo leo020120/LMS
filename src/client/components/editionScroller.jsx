@@ -2,13 +2,13 @@ import { useEffect, useState, useRef } from "react";
 import supabase from "../../supabase";
 import "../components/styles/editionScroller.css";
 
-function EditionScroller() {
+function EditionScroller({ setActiveEdition }) {
   const [editions, setEditions] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-  const [activeEdition, setActiveEdition] = useState(null);
+  //const [activeEdition, setActiveEdition] = useState(null);
 
   //useEffect to grab latest list of editions from DB on mount
   useEffect(() => {
@@ -45,7 +45,7 @@ function EditionScroller() {
     }
   };
 
-  console.log("active Edition", activeEdition);
+  //console.log("active Edition", activeEdition);
 
   return (
     <div className="editionScrollContainer">

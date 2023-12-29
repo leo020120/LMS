@@ -1,13 +1,12 @@
 import React from "react";
 import "./styles/TeamSelectModal.css";
 import supabase from "../../supabase";
-import EditionScroller from "./editionScroller";
 
 const TeamSelectModal = ({
   match,
   closeTeamSelectModal,
   user,
-  EditionScroller,
+  activeEdition,
 }) => {
   if (!match) {
     return <div>No match selected</div>;
@@ -15,32 +14,55 @@ const TeamSelectModal = ({
 
   const isHomeTeam = match.isHomeTeam;
   console.log("isHomeTeam", isHomeTeam);
-  console.log("Modal active edition", EditionScroller.activeEdition);
+  console.log("Modal active edition", activeEdition);
 
   const confirmTeam = async (user, match, isHomeTeam) => {
-    //do an upsert into mapping table of email, team, gameweek, matchid
-    //take user details from session?
-    //take match details from match object
-    //insert the extracted data into Supabase table
-    //Create data object
+    try {
+      // const chosenTeam = {
+      //   email: user.email,
+      //   team: isHomeTeam ? match.homeTeamName : match.awayTeamName,
+      //   gameWeek: match.matchDay,
+      //   matchId: match.matchId,
+      //   user_id: user.id,
+      //   teamId: isHomeTeam ? match.homeTeamId : match.awayTeamId,
+      //   team_location: isHomeTeam ? "HOME_TEAM" : "AWAY_TEAM",
+      //   edition_id: activeEdition,
+      //   choice_status: "active",
+      // };
 
-    const chosenTeam = {
-      email: user.email,
-      team: isHomeTeam ? match.homeTeamName : match.awayTeamName,
-      gameWeek: match.matchDay,
-      matchId: match.matchId,
-      user_id: user.id,
-      teamId: isHomeTeam ? match.homeTeamId : match.awayTeamId,
-      team_location: isHomeTeam ? "HOME_TEAM" : "AWAY_TEAM",
-      edition_id: EditonScroller.activeEdition,
-    };
+      console.log("matchday", match);
+      const { data, error: Error } = await supabase.rpc(
+        "confirm_team_selection",
+        {
+          email: user.email,
+          team: isHomeTeam ? match.homeTeamName : match.awayTeamName,
+          gameweek: match.gameWeek,
+          matchid: match.matchId,
+          up_user_id: user.id,
+          teamid: isHomeTeam ? match.homeTeamId : match.awayTeamId,
+          teamlocation: isHomeTeam ? "HOME_TEAM" : "AWAY_TEAM",
+          editionid: activeEdition,
+        }
+      );
 
-    const { data, error } = await supabase
-      .from("mapping")
-      .insert(chosenTeam, { onConflict: ["mappingId"] }); // Use the correct unique column
+      if (Error) {
+        console.error("Error updating existing active row:", Error);
+        return;
+      }
 
-    console.log("Modal USER", user);
-    console.log(chosenTeam);
+      console.log("upData", data);
+    } catch (error) {
+      console.log("error executing rpc", error);
+    }
+
+    ////////////////////////////////////////////
+
+    // const { data, error } = await supabase
+    //   .from("mapping")
+    //   .insert(chosenTeam, { onConflict: ["mappingId"] }); // Use the correct unique column
+
+    // console.log("Modal USER", user);
+    // console.log(chosenTeam);
   };
 
   return (

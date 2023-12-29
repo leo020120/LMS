@@ -21,6 +21,8 @@ function App() {
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
+  const [activeEdition, setActiveEdition] = useState(null);
+  console.log("App.jsx activeEdition", activeEdition);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,6 +83,7 @@ function App() {
           match={selectedMatch}
           closeTeamSelectModal={setOpenModal}
           user={user}
+          activeEdition={activeEdition}
         />
       )}
 
@@ -116,7 +119,7 @@ function App() {
         </nav>
       </header>
       <div>
-        <EditionScroller />
+        <EditionScroller setActiveEdition={setActiveEdition} />
       </div>
       <div className="main">
         <nav className="leftPanel">
@@ -136,6 +139,7 @@ function App() {
             setOpenModal={setOpenModal}
             setSelectedMatch={setSelectedMatch}
             user={user}
+            activeEdition={activeEdition}
           />
         </div>
 
