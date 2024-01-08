@@ -11,9 +11,11 @@ function DataTable({ setOpenModal, setSelectedMatch, user, activeEdition }) {
   useEffect(() => {
     async function getMatches() {
       const { data, error } = await supabase
-        .from("display_table")
+        .from("display_view")
         .select()
-        .or(`user_id.eq.${user.id}, user_id.is.null`);
+        .or(
+          `user_id.is.null,and(user_id.eq.${user.id},choice_status.eq.active)`
+        );
       // .and(`edition_id.eq.${activeEdition}`);
       //AND edition = editionScroller active edition
       setMatches(data);
@@ -31,7 +33,7 @@ function DataTable({ setOpenModal, setSelectedMatch, user, activeEdition }) {
   const handleCellClick = (match, isHomeTeam) => {
     setOpenModal(true);
     setSelectedMatch({ ...match, isHomeTeam });
-    console.log("MATCH", match);
+    console.log("MATCH dis table", match);
   };
 
   //console.log(matches);
@@ -79,6 +81,7 @@ function DataTable({ setOpenModal, setSelectedMatch, user, activeEdition }) {
                 <img src={match.awayTeamCrest} />
               </td>
               <td className="winLoss">{match.winloss}</td>
+              <td className="choice">{match.choice_status}</td>
             </tr>
           ))}
         </tbody>

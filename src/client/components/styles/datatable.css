@@ -1,23 +1,25 @@
 table {
-    width:100%;
+  width: 100%;
 }
 
 th {
-    text-align: center;
-    padding: 5px;
-    border-bottom: 1px solid white;
-    background-color: black;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid white;
+  background-color: black;
 }
 
-
-
 .badge img {
-    max-width: 50px;
-    max-height: 50px;
-    cursor: pointer;
+  max-width: 50px;
+  max-height: 50px;
+  cursor: pointer;
 }
 
 .teamName {
-    cursor: pointer;
+  cursor: pointer;
 }
 
+.choice:has(p) {
+  font-weight: bold;
+  background-color: blueviolet;
+}

@@ -3,7 +3,7 @@
 // Import necessary libraries
 import fetch from "node-fetch";
 import cron from "node-cron";
-import supabase from "../../supabase";
+import supabase from "../../src/supabase.js";
 
 // Function to fetch data from the football API and process it
 async function fetchDataAndProcess() {
@@ -29,7 +29,7 @@ async function fetchDataAndProcess() {
       return {
         matchId: match.id,
         competition: data.competition.name,
-        matchDay: match.matchday,
+        gameWeek: match.matchday,
         homeTeamId: match.homeTeam.id,
         homeTeamName: match.homeTeam.name,
         homeTeamCrest: match.homeTeam.crest,
